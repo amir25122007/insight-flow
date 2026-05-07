@@ -1,0 +1,19 @@
+user_id,event_name,event_time,platform,country,session_id,revenue
+1,opens_app,2026-05-01 10:00:00,ios,RU,s1,0
+1,signup,2026-05-01 10:02:00,ios,RU,s1,0
+1,start_course,2026-05-01 10:05:00,ios,RU,s1,0
+1,subscribe,2026-05-01 10:20:00,ios,RU,s1,499
+2,opens_app,2026-05-01 11:00:00,android,KZ,s2,0
+2,signup,2026-05-01 11:05:00,android,KZ,s2,0
+2,start_course,2026-05-01 11:10:00,android,KZ,s2,0
+3,opens_app,2026-05-02 09:00:00,web,RU,s3,0
+3,signup,2026-05-02 09:07:00,web,RU,s3,0
+3,start_course,2026-05-02 09:20:00,web,RU,s3,0
+3,complete_lesson,2026-05-02 09:45:00,web,RU,s3,0
+4,opens_app,2026-05-02 14:00:00,ios,UZ,s4,0
+4,signup,2026-05-02 14:03:00,ios,UZ,s4,0
+4,opens_app,2026-05-03 10:00:00,ios,UZ,s5,0
+5,opens_app,2026-05-03 12:00:00,android,RU,s6,0
+5,signup,2026-05-03 12:04:00,android,RU,s6,0
+5,start_course,2026-05-03 12:12:00,android,RU,s6,0
+5,subscribe,2026-05-03 12:20:00,android,RU,s6,299

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsightFlow Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-light">
+<div class="container py-4">
+    <h1 class="mb-4">InsightFlow Analytics Dashboard</h1>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Revenue</h5>
+                    <p class="card-text fs-4">{{ revenue.total_revenue }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">ARPU</h5>
+                    <p class="card-text fs-4">{{ revenue.arpu }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Cohorts</h5>
+                    <p class="card-text fs-4">{{ retention|length }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>Funnel</h4>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Step</th>
+                    <th>Users</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for step, users in funnel.counts.items %}
+                    <tr>
+                        <td>{{ step }}</td>
+                        <td>{{ users }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h4>DAU by Day</h4>
+            <canvas id="dauChart" height="90"></canvas>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Unique Users</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in dau %}
+                    <tr>
+                        <td>{{ item.date }}</td>
+                        <td>{{ item.users }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    const dauLabels = {{ dau_labels|safe }};
+    const dauValues = {{ dau_values|safe }};
+
+    new Chart(document.getElementById("dauChart"), {
+        type: "line",
+        data: {
+            labels: dauLabels,
+            datasets: [{
+                label: "Daily Active Users",
+                data: dauValues,
+                borderColor: "rgb(54, 162, 235)",
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                tension: 0.2,
+                fill: true
+            }]
+        }
+    });
+</script>
+</body>
+</html>
